@@ -15,8 +15,9 @@
 #
 ---
 
-- hosts: pull_mode_hosts
+- hosts: 127.0.0.1
   remote_user: root
+  sudo: yes
 
   vars:
 
@@ -35,12 +36,12 @@
     # Repository to check out -- YOU MUST CHANGE THIS
     # repo must contain a local.yml file at top level
     #repo_url: git://github.com/sfromm/ansible-playbooks.git
-    repo_url: SUPPLY_YOUR_OWN_GIT_URL_HERE
+    repo_url: git://github.com/diegopacheco/ansible-examples.git
 
   tasks:
 
     - name: Install ansible
-      yum: pkg=ansible state=installed
+      apt: pkg=ansible state=installed
 
     - name: Create local directory to work from
       file: path={{workdir}} state=directory owner=root group=root mode=0751
